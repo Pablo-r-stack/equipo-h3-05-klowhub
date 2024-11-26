@@ -8,8 +8,8 @@ const setupSwagger = require("./swagger");
 
 import { PrismaClient } from "@prisma/client";
 import passport from "passport";
-import register from "../Klowhub-backend/src/routes/register.routes.js";
 import "./config/passport.js";
+import register from "./routes/register.routes.js";
 import {
   default as deleteUserRoute,
   default as userRoute,
