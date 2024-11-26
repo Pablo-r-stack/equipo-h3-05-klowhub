@@ -1,4 +1,4 @@
-import { prisma } from "../server.js";
+import { prisma } from "../index.js";
 
 export const checkIfUserExists = async (email) => {
   const user = await prisma.user.findUnique({

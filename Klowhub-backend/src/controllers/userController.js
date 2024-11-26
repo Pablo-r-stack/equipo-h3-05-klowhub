@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 const getUserProfile = async (req, res) => {
   try {
-    const user = await prisma.usuario.findUnique({
+    const user = await prisma.user.findUnique({
       where: { id: req.user.id },
     });
     if (!user) {
@@ -30,7 +30,7 @@ const updateAvatar = async (req, res) => {
   }
 
   try {
-    const updatedUser = await prisma.usuario.update({
+    const updatedUser = await prisma.user.update({
       where: { id: req.user.id },
       data: { avatar },
     });

@@ -1,4 +1,4 @@
-import { prisma } from "../server.js";
+import { prisma } from "../index.js";
 import { checkIfUserExists } from "../utils/checkIfUserExists.js";
 import { generateToken } from "../utils/jwt.js";
 import { hashPassword } from "../utils/passwordUtils.js";

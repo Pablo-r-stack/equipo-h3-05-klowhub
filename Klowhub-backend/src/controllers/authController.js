@@ -31,7 +31,7 @@ const register = async (req, res) => {
       .json({ error: "Formato de correo electrónico no válido." });
   }
 
-  const existingUser = await prisma.usuario.findUnique({ where: { email } });
+  const existingUser = await prisma.user.findUnique({ where: { email } });
   if (existingUser) {
     return res
       .status(400)
@@ -51,7 +51,7 @@ const register = async (req, res) => {
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await prisma.usuario.create({
+    const newUser = await prisma.user.create({
       data: {
         email,
         password: hashedPassword,
@@ -78,7 +78,7 @@ const login = async (req, res) => {
   }
 
   try {
-    const user = await prisma.usuario.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
       return res.status(401).json({ error: "Credenciales inválidas." });
     }
