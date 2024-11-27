@@ -1,45 +1,42 @@
-// src/index.js
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userRoutes");
-const setupSwagger = require("./swagger");
-
-import { PrismaClient } from "@prisma/client";
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 import passport from "passport";
-import "./config/passport.js";
-import register from "./routes/register.routes.js";
-import {
-  default as deleteUserRoute,
-  default as userRoute,
-  default as usersRoute,
-} from "./routes/user.routes.js";
+import { PrismaClient } from "@prisma/client";
+import "./config/passport.js"; // Configuración de Passport
 
-dotenv.config();
+// Rutas
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import registerRoutes from "./routes/register.routes.js";
+import userRoute from "./routes/user.routes.js"; 
+import setupSwagger from "./swagger.js";
+
+dotenv.config(); // Cargar variables de entorno desde .env
+
 const app = express();
+const prisma = new PrismaClient(); // Inicializar Prisma
 
-const prisma = new PrismaClient();
-
-app.use(passport.initialize());
-
+// Middleware
 app.use(cors());
 app.use(express.json());
+app.use(passport.initialize());
 
-app.use("/api/auth", authRoutes); // Authentication routes
-app.use("/api/user", userRoutes); // User-related routes
+// Rutas principales
+app.use("/api/auth", authRoutes); // Rutas de autenticación
+app.use("/api/user", userRoutes); // Rutas relacionadas con usuarios
 
-//register route
-app.use("/api", register);
+// Rutas adicionales
+app.use("/api/register", registerRoutes); // Rutas para registro
+app.use("/api/users", userRoute); // Rutas generales relacionadas con usuarios
 
-//User routes
-app.use("/api", usersRoute);
-app.use("/api", userRoute);
-app.use("/api", deleteUserRoute);
-
+// Swagger
 setupSwagger(app);
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log("Server is running on http://localhost:5000");
+// Iniciar servidor
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
 export { prisma };

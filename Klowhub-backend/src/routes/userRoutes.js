@@ -1,10 +1,8 @@
-const express = require("express");
-const verifyToken = require("../middlewares/verifyToken");
-const {
-  getUserProfile,
-  updateAvatar,
-} = require("../controllers/userController");
-const logger = require("../utils/logger");
+import express from "express";
+import verifyToken from "../middlewares/verifyToken.js";
+import { getUserProfile, updateAvatar } from "../controllers/userController.js";
+import logger from "../utils/logger.js";
+
 const router = express.Router();
 
 /**
@@ -66,4 +64,4 @@ router.put("/me/avatar", verifyToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
