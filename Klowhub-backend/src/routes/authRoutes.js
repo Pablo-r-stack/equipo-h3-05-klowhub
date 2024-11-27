@@ -1,11 +1,9 @@
-const express = require("express");
-const {
-  register,
-  login,
-  getAvatars,
-} = require("../controllers/authController");
-const verifyToken = require("../middlewares/verifyToken");
-const logger = require("../utils/logger");
+import express from "express";
+import { register, login, getAvatars } from "../controllers/authController.js";
+import { getUserProfile, updateAvatar } from "../controllers/userController.js"; // Asegúrate de importar el controlador de usuario
+import verifyToken from "../middlewares/verifyToken.js";
+import logger from "../utils/logger.js";
+
 const router = express.Router();
 
 /**
@@ -127,4 +125,41 @@ router.get("/protected", verifyToken, (req, res) => {
   }
 });
 
-module.exports = router;
+/**
+ * @swagger
+ * /auth/me:
+ *   get:
+ *     summary: Obtener el perfil del usuario actual
+ *     tags: [Autenticación]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Información del perfil del usuario
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 email:
+ *                   type: string
+ *                 avatar:
+ *                   type: string
+ *       401:
+ *         description: No autorizado
+ *       500:
+ *         description: Error interno del servidor
+ */
+router.get("/me", verifyToken, async (req, res) => {
+  try {
+    logger.info("Ruta /me accedida por el usuario", { user: req.user });
+    await getUserProfile(req, res); // Llamar al controlador de perfil
+  } catch (error) {
+    logger.error("Error en la ruta /me:", error);
+    res.status(500).json({ error: "Error al obtener el perfil del usuario." });
+  }
+});
+
+export default router;

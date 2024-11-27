@@ -1,32 +1,38 @@
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
 const swaggerDefinition = {
   openapi: "3.0.0",
   info: {
-    title: "KlowHub API", // API Titulo
-    version: "1.0.0", // Version
-    description: "API documentation for KlowHub backend.", // Descripcion
+    title: "KlowHub API", // Título de la API
+    version: "1.0.0", // Versión
+    description: "Documentación de la API para el backend de KlowHub.", // Descripción
   },
   servers: [
     {
       url: "http://localhost:5000/api",
-      description: "Local server",
+      description: "Servidor local",
     },
   ],
 };
 
 const options = {
   swaggerDefinition,
-  apis: ["./src/routes/*.js"],
+  apis: ["./src/routes/*.js"], // Ruta a los archivos de las rutas
 };
 
 // Inicializar swagger-jsdoc
 const swaggerSpec = swaggerJsdoc(options);
 
+/**
+ * Configura Swagger en la aplicación.
+ * @param {object} app - La instancia de la aplicación de Express.
+ */
 const setupSwagger = (app) => {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  console.log("Swagger docs available at http://localhost:5000/api-docs");
+  console.log(
+    "Documentación de Swagger disponible en http://localhost:5000/api-docs"
+  );
 };
 
-module.exports = setupSwagger;
+export default setupSwagger;

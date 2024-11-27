@@ -1,23 +1,26 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { PrismaClient } = require("@prisma/client");
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-// Email validation regex
+// Validación
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// Password validation regex
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
-const register = async (req, res) => {
-  const { email, password, avatar } = req.body;
+const allowedAvatars = [
+  "avatar1.png",
+  "avatar2.png",
+  "avatar3.png",
+  "avatar4.png",
+];
 
-  const allowedAvatars = [
-    "avatar1.png",
-    "avatar2.png",
-    "avatar3.png",
-    "avatar4.png",
-  ];
+/**
+ * Registrar un nuevo usuario.
+ * @param {Request} req - La solicitud HTTP.
+ * @param {Response} res - La respuesta HTTP.
+ */
+export const register = async (req, res) => {
+  const { name, lastName, email, password, avatar } = req.body;
 
   if (!email || !password || !avatar) {
     return res
@@ -50,9 +53,14 @@ const register = async (req, res) => {
   }
 
   try {
+    // Hashear la contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Crear usuario en la base de datos
     const newUser = await prisma.user.create({
       data: {
+        name,
+        lastName,
         email,
         password: hashedPassword,
         avatar,
@@ -64,13 +72,23 @@ const register = async (req, res) => {
       user: { id: newUser.id, email: newUser.email, avatar: newUser.avatar },
     });
   } catch (error) {
-    res.status(500).json({ error: "Error al registrar al usuario." });
+    console.error("Error al registrar al usuario:", error); // Ver el error completo
+    res.status(500).json({
+      error: "Error al registrar al usuario.",
+      details: error.message,
+    });
   }
 };
 
-const login = async (req, res) => {
+/**
+ * Iniciar sesión para un usuario.
+ * @param {Request} req - La solicitud HTTP.
+ * @param {Response} res - La respuesta HTTP.
+ */
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
+  // Validar campos obligatorios
   if (!email || !password) {
     return res
       .status(400)
@@ -78,16 +96,19 @@ const login = async (req, res) => {
   }
 
   try {
-    const user = await prisma.user.findUnique({ where: { email } });
+    // Buscar usuario por correo electrónico
+    const user = await prisma.user.findUnique({ where: { email } }); // Usar prisma.user
     if (!user) {
       return res.status(401).json({ error: "Credenciales inválidas." });
     }
 
+    // Comparar la contraseña proporcionada con la almacenada
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ error: "Credenciales inválidas." });
     }
 
+    // Generar un token JWT
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
@@ -98,18 +119,22 @@ const login = async (req, res) => {
       user: { id: user.id, email: user.email, avatar: user.avatar },
     });
   } catch (error) {
-    res.status(500).json({ error: "Error al iniciar sesión." });
+    console.error("Error al iniciar sesión:", error);
+    res
+      .status(500)
+      .json({ error: "Error al iniciar sesión.", details: error.message });
   }
 };
 
-const getAvatars = (req, res) => {
-  const avatars = [
-    { name: "Avatar 1", file: "avatar1.png" },
-    { name: "Avatar 2", file: "avatar2.png" },
-    { name: "Avatar 3", file: "avatar3.png" },
-    { name: "Avatar 4", file: "avatar4.png" },
-  ];
+/**
+ * Obtener la lista de avatares disponibles.
+ * @param {Request} req - La solicitud HTTP.
+ * @param {Response} res - La respuesta HTTP.
+ */
+export const getAvatars = (req, res) => {
+  const avatars = allowedAvatars.map((file, index) => ({
+    name: `Avatar ${index + 1}`,
+    file,
+  }));
   res.json(avatars);
 };
-
-module.exports = { register, login, getAvatars };

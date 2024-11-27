@@ -1,10 +1,19 @@
 import passport from "passport";
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 import { prisma } from "../index.js";
+import dotenv from "dotenv";
+
+dotenv.config(); 
+
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  throw new Error("Falta la clave JWT_SECRET en las variables de entorno");
+}
 
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.JWT_SECRET,
+  secretOrKey: JWT_SECRET,
 };
 
 passport.use(
@@ -31,3 +40,5 @@ passport.use(
     }
   })
 );
+
+export default passport;
