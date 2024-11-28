@@ -1,15 +1,15 @@
-import express from "express";
+import { PrismaClient } from "@prisma/client";
 import cors from "cors";
 import dotenv from "dotenv";
+import express from "express";
 import passport from "passport";
-import { PrismaClient } from "@prisma/client";
 import "./config/passport.js"; // Configuración de Passport
 
 // Rutas
 import authRoutes from "./routes/authRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
 import registerRoutes from "./routes/register.routes.js";
-import userRoute from "./routes/user.routes.js"; 
+import userRoute from "./routes/user.routes.js";
+import userRoutes from "./routes/userRoutes.js";
 import setupSwagger from "./swagger.js";
 
 dotenv.config(); // Cargar variables de entorno desde .env
