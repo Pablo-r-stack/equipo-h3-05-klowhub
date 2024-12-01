@@ -36,9 +36,33 @@ model Course {
   title       String
   description String
   price       Float
+  category    String
   sellerId    Int
   seller      User     @relation("CourseSeller", fields: [sellerId], references: [id])
+  modules     Module[]
   Shopping    Shop[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Module {
+  id          Int      @id @default(autoincrement())
+  title       String
+  courseId    Int
+  course      Course   @relation(fields: [courseId], references: [id])
+  classes     Clase[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Clase {
+  id          Int      @id @default(autoincrement())
+  moduleId    Int
+  module      Module   @relation(fields: [moduleId], references: [id])
+  classNumber Int
+  title       String
+  video       String
+  material    String? 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
