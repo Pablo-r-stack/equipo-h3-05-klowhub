@@ -9,7 +9,7 @@ import "./config/passport.js"; // Configuración de Passport
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import registerRoutes from "./routes/register.routes.js";
-import userRoute from "./routes/user.routes.js";
+import userRoutes from "./routes/user.routes.js";
 import setupSwagger from "./swagger.js";
 import claseRoutes from "./routes/claseRoutes.js";
 
