@@ -1,6 +1,6 @@
 import express from "express";
-import { register, login, getAvatars } from "../controllers/authController.js";
-import { getUserProfile, updateAvatar } from "../controllers/userController.js"; // Asegúrate de importar el controlador de usuario
+import { getAvatars, login, register } from "../controllers/authController.js";
+import { getUserProfile } from "../controllers/userController.js"; // Asegúrate de importar el controlador de usuario
 import verifyToken from "../middlewares/verifyToken.js";
 import logger from "../utils/logger.js";
 
