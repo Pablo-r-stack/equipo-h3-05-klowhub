@@ -8,9 +8,14 @@ import "./config/passport.js"; // Configuración de Passport
 // Rutas
 import authRoutes from "./routes/authRoutes.js";
 import registerRoutes from "./routes/register.routes.js";
+
 import userRoute from "./routes/user.routes.js";
 import userRoutes from "./routes/userRoutes.js";
+
+
+
 import setupSwagger from "./swagger.js";
+import claseRoutes from "./routes/claseRoutes.js";
 
 dotenv.config(); // Cargar variables de entorno desde .env
 
@@ -22,6 +27,9 @@ app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 
+// Servir archivos estáticos desde la carpeta "uploads"
+app.use("/uploads", express.static("uploads"));
+
 // Rutas principales
 app.use("/api/auth", authRoutes); // Rutas de autenticación
 app.use("/api/user", userRoutes); // Rutas relacionadas con usuarios
@@ -29,8 +37,9 @@ app.use("/api/user", userRoutes); // Rutas relacionadas con usuarios
 // Rutas adicionales
 app.use("/api/register", registerRoutes); // Rutas para registro
 app.use("/api/users", userRoute); // Rutas generales relacionadas con usuarios
+app.use("/api/clases", claseRoutes); // Rutas relacionadas con clases
 
-// Swagger
+// Documentación con Swagger
 setupSwagger(app);
 
 // Iniciar servidor
