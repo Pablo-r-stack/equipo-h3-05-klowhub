@@ -82,8 +82,18 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
-      }
+      },
+      boxShadow: {
+        'custom-1': '6px 6px 6px 0px #00000040',
+        'custom-2': '4px 4px 4px 0px #0000004F',
+      },
     }
+  },
+  variants: {
+    extend: {
+      backgroundColor: ['hover'], // Activa hover para bg
+      textColor: ['hover'],      // Activa hover para text
+    },
   },
   plugins: [require('tailwindcss-animate'), require('tailwindcss-textshadow')]
 } satisfies Config

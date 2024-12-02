@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import NavBar from "@/components/organisms/NavBar/navbar";
 
 export const metadata: Metadata = {
@@ -15,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased home_bg h-full`}>
+        <NavBar />
         {children}
       </body>
     </html>
