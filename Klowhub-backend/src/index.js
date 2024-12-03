@@ -12,10 +12,8 @@ import registerRoutes from "./routes/register.routes.js";
 import userRoute from "./routes/user.routes.js";
 import userRoutes from "./routes/userRoutes.js";
 
-
-
-import setupSwagger from "./swagger.js";
 import claseRoutes from "./routes/claseRoutes.js";
+import setupSwagger from "./swagger.js";
 
 dotenv.config(); // Cargar variables de entorno desde .env
 
