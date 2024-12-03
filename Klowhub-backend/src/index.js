@@ -12,6 +12,8 @@ import registerRoutes from "./routes/register.routes.js";
 import userRoute from "./routes/user.routes.js";
 import userRoutes from "./routes/userRoutes.js";
 
+import courseRoutes from "./routes/course.routes.js";
+
 import claseRoutes from "./routes/claseRoutes.js";
 import setupSwagger from "./swagger.js";
 
@@ -36,6 +38,7 @@ app.use("/api/user", userRoutes); // Rutas relacionadas con usuarios
 app.use("/api/register", registerRoutes); // Rutas para registro
 app.use("/api/users", userRoute); // Rutas generales relacionadas con usuarios
 app.use("/api/clases", claseRoutes); // Rutas relacionadas con clases
+app.use("/api/courses", courseRoutes); // Rutas relacionadas con cursos
 
 // Documentación con Swagger
 setupSwagger(app);
