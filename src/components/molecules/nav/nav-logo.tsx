@@ -18,4 +18,4 @@ const NavLogo = () => {
   )
 }
 
-export default NavLogo
+export {NavLogo}

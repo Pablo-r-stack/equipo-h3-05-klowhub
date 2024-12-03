@@ -19,4 +19,4 @@ const DashboardCard = ({ title, icon }: Props) => {
   );
 };
 
-export default DashboardCard;
+export {DashboardCard};

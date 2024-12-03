@@ -19,4 +19,4 @@ const SearchForm = ({query}: {query?: string}) => {
   )
 }
 
-export default SearchForm
+export {SearchForm}

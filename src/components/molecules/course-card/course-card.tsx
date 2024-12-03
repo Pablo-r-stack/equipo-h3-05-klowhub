@@ -1,5 +1,5 @@
 "use client"
-import StarBadge from "@/components/atoms/star-badge";
+import { StarBadge } from "@/components/atoms/star-badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -68,4 +68,4 @@ const CourseCard = ({
   );
 };
 
-export default CourseCard;
+export {CourseCard};

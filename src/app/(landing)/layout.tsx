@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import NavBar from "@/components/organisms/NavBar/navbar";
+import { NavBar } from "@/components";
 
 export const metadata: Metadata = {
   title: "KlowHub",

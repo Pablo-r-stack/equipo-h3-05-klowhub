@@ -1,6 +1,7 @@
 import AgentIcon from "@/components/atoms/icons/agent-icon";
-import CurrentCourseCard from "@/components/molecules/current-course-card/current-course-card";
-import DashboardCard from "@/components/molecules/dashboard-card/dashboard-card";
+import { CurrentCourseCard } from "@/components/molecules/current-course-card/current-course-card";
+import { DashboardCard } from "@/components/molecules/dashboard-card/dashboard-card";
+
 import { Heart, LibraryBig, Mail } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -36,4 +37,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export {Dashboard};

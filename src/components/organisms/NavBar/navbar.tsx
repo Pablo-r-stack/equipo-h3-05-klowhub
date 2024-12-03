@@ -1,16 +1,16 @@
 "use client";
 import NavIconButton from "@/components/atoms/icons/nav-icon-button";
-import SearchForm from "@/components/molecules/form/search-form";
-import NavLogo from "@/components/molecules/nav/nav-logo";
-import NavMenu from "@/components/molecules/nav/nav-menu";
+import { SearchForm } from "@/components/molecules/form/search-form";
+import { NavLogo } from "@/components/molecules/nav/nav-logo";
+import { NavMenu } from "@/components/molecules/nav/nav-menu";
 import { Button } from "@/components/ui/button";
 import { Bell, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 
 const NavBar = () => {
-  const session = false;
+  const session = true;
   return (
-    <header className="bg-primary_900 sticky top-0 z-50 w-full h-[121px] bg-none border-b flex justify-between items-center px-8 py-5">
+    <header className="backdrop-blur-md sticky top-0 z-50 w-full h-[121px] bg-none border-b flex justify-between items-center px-8 py-5">
       <NavLogo />
       <NavMenu />
       <div className="flex justify-end gap-4 pl-8 border-l">
@@ -50,4 +50,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export {NavBar};

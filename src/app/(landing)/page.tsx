@@ -1,6 +1,4 @@
-import { Button } from "@/components";
-import CourseCard from "@/components/molecules/course-card/course-card";
-import Dashboard from "@/components/organisms/dashboard/dashboard";
+import { Button, CourseCard, Dashboard } from "@/components";
 import Link from "next/link";
 
 //to-do -> replace mockcourses with api results, make async component & skeleton load
@@ -97,7 +95,7 @@ function Home() {
             <Link href="#">Ver más</Link>
           </Button>
         </span>
-        <div className="flex flex-nowrap w-full gap-8 overflow-x-auto">
+        <div className="flex flex-nowrap w-full gap-8 overflow-x-auto py-4">
           <>
           {courses && courses.length>0 ? courses.map(({
             id,

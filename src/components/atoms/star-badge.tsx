@@ -14,4 +14,4 @@ const StarBadge = ({rating}: Props) => {
   )
 }
 
-export default StarBadge
+export {StarBadge}

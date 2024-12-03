@@ -45,4 +45,4 @@ const CurrentCourseCard = ({ title, image }: CardProps) => {
   );
 };
 
-export default CurrentCourseCard;
+export {CurrentCourseCard};
