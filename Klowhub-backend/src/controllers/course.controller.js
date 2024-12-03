@@ -1,4 +1,4 @@
-import { courseService } from "../services/course.service";
+import { courseService } from "../services/course.service.js";
 
 export const courseController = {
   createCourse: async (req, res) => {

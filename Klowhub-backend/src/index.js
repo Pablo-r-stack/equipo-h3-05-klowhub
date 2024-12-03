@@ -17,10 +17,10 @@ import courseRoutes from "./routes/course.routes.js";
 import claseRoutes from "./routes/claseRoutes.js";
 import setupSwagger from "./swagger.js";
 
-dotenv.config(); // Cargar variables de entorno desde .env
+dotenv.config();
 
 const app = express();
-const prisma = new PrismaClient(); // Inicializar Prisma
+const prisma = new PrismaClient();
 
 // Middleware
 app.use(cors());
@@ -35,15 +35,13 @@ app.use("/api/auth", authRoutes); // Rutas de autenticación
 app.use("/api/user", userRoutes); // Rutas relacionadas con usuarios
 
 // Rutas adicionales
-app.use("/api/register", registerRoutes); // Rutas para registro
+app.use("/api", registerRoutes); // Rutas para registro
 app.use("/api/users", userRoute); // Rutas generales relacionadas con usuarios
 app.use("/api/clases", claseRoutes); // Rutas relacionadas con clases
-app.use("/api/courses", courseRoutes); // Rutas relacionadas con cursos
+app.use("/api/courses", courseRoutes);
 
-// Documentación con Swagger
 setupSwagger(app);
 
-// Iniciar servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
