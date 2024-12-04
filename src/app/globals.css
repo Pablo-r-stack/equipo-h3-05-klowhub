@@ -9,5 +9,20 @@ body {
 @layer base {
   :root {
     --radius: 0.5rem;
+    --text-color: #FFFFFF;
+  }
+  body{
+    color: var(--text-color);
+  }
+}
+
+@layer utilities{
+  .home_bg{
+    @apply bg-gradient-to-b from-[#381642] via-[#363175] to-[rgba(67,59,91,0.9)]
+
+  }
+  
+  .outline-btn{
+    @apply bg-white text-black py-[10px] px-5 text-sm font-sans font-semibold rounded-lg border-2 border-primary_500
   }
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import NavBar from "@/components/organisms/NavBar/navbar";
+import "../globals.css";
+import { NavBar } from "@/components";
 
 export const metadata: Metadata = {
   title: "KlowHub",
@@ -15,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased home_bg h-full`}>
+        <NavBar />
         {children}
       </body>
     </html>
