@@ -96,19 +96,16 @@ export const login = async (req, res) => {
   }
 
   try {
-    // Buscar usuario por correo electrónico
-    const user = await prisma.user.findUnique({ where: { email } }); // Usar prisma.user
+    const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
       return res.status(401).json({ error: "Credenciales inválidas." });
     }
 
-    // Comparar la contraseña proporcionada con la almacenada
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ error: "Credenciales inválidas." });
     }
 
-    // Generar un token JWT
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });

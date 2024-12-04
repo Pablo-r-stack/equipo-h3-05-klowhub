@@ -4,9 +4,9 @@ import swaggerUi from "swagger-ui-express";
 const swaggerDefinition = {
   openapi: "3.0.0",
   info: {
-    title: "KlowHub API", // Título de la API
-    version: "1.0.0", // Versión
-    description: "Documentación de la API para el backend de KlowHub.", // Descripción
+    title: "KlowHub API",
+    version: "1.0.0",
+    description: "Documentación de la API para el backend de KlowHub.",
   },
   servers: [
     {
@@ -18,7 +18,7 @@ const swaggerDefinition = {
 
 const options = {
   swaggerDefinition,
-  apis: ["./src/routes/*.js"], // Ruta a los archivos de las rutas
+  apis: ["./src/routes/*.js"],
 };
 
 // Inicializar swagger-jsdoc
