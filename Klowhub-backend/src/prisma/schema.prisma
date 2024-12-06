@@ -14,7 +14,7 @@ model User {
   email       String   @unique
   password    String
   profile     Profile?
-  avatar      String
+  avatarUrl   String?  // URL del avatar en Cloudinary
   coursesSold Course[] @relation("CourseSeller")
   Shopping    Shop[]
   createdAt   DateTime @default(now())
@@ -61,8 +61,9 @@ model Clase {
   module      Module   @relation(fields: [moduleId], references: [id])
   classNumber Int
   title       String
-  video       String
-  material    String? 
+  videoUrl    String?   // URL del video en Cloudinary
+  thumbnail   String?  // URL del thumbnail del video
+  material    String?  // URL del material adicional
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
