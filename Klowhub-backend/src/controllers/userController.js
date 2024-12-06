@@ -60,7 +60,7 @@ export const updateAvatar = async (req, res) => {
   try {
     const updatedUser = await prisma.user.update({
       where: { id: req.user.id },
-      data: { avatar },
+      data: { avatarUrl: avatar },
     });
 
     console.log("Usuario actualizado:", updatedUser);

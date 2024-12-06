@@ -9,9 +9,10 @@ import "./config/passport.js";
 import authRoutes from "./routes/authRoutes.js";
 import registerRoutes from "./routes/register.routes.js";
 import userRoutes from "./routes/userRoutes.js";
-import courseRoutes from "./routes/course.routes.js"; 
-import claseRoutes from "./routes/claseRoutes.js"; 
-import setupSwagger from "./swagger.js"; 
+import courseRoutes from "./routes/course.routes.js";
+import claseRoutes from "./routes/claseRoutes.js";
+import setupSwagger from "./swagger.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 
 dotenv.config();
 
@@ -25,14 +26,18 @@ app.use(passport.initialize());
 
 // Archivos estáticos
 app.use("/uploads", express.static("uploads"));
+app.use("/avatars", express.static("src/avatars"));
 
 // Rutas principales
-app.use("/api/auth", authRoutes); 
-app.use("/api/user", userRoutes); 
-app.use("/api/register", registerRoutes); 
-app.use("/api/users", userRoutes); 
-app.use("/api/clases", claseRoutes); 
+app.use("/api/auth", authRoutes);
+// app.use("/api/user", userRoutes);
+app.use("/api/register", registerRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/clases", claseRoutes);
 app.use("/api/courses", courseRoutes);
+
+// Rutas adicionales
+app.use("/api/upload", uploadRoutes);
 
 // Documentación Swagger
 setupSwagger(app);
