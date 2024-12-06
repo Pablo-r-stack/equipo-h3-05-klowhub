@@ -8,6 +8,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import { Route } from '@/const';
 
 const resources = [
   {
@@ -29,7 +30,7 @@ const NavMenu = () => {
     <NavigationMenu className="hidden md:flex flex-1 font-sans font-semibold text-xl">
       <NavigationMenuList className="space-x-2">
         <NavigationMenuItem>
-          <Link href="/aprende" legacyBehavior passHref>
+          <Link href={Route.Courses} legacyBehavior passHref>
             <NavigationMenuLink className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700 hover:text-white focus:bg-purple-700 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50">
               Aprende
             </NavigationMenuLink>
@@ -57,7 +58,7 @@ const NavMenu = () => {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/suscripciones" legacyBehavior passHref>
+          <Link href="#" legacyBehavior passHref>
             <NavigationMenuLink className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700 hover:text-white focus:bg-purple-700 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50">
               Suscripciones
             </NavigationMenuLink>

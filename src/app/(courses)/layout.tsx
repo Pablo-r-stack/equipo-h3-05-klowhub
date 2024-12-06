@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { NavBar } from "@/components";
+import { DashboardCard, DashboardCardList, NavBar } from "@/components";
+import Link from "next/link";
+import { Heart, LibraryBig, Mail } from "lucide-react";
+import AgentIcon from "@/components/atoms/icons/agent-icon";
 
 export const metadata: Metadata = {
   title: "KlowHub",
@@ -17,6 +20,8 @@ export default function RootLayout({
       <body className={`antialiased home_bg h-full min-h-screen`}>
         <NavBar />
         <main className="flex flex-col mx-8 pt-8 gap-8">
+          {/* to-do-> replace w/proper component */}
+          <DashboardCardList />
           {children}
         </main>
       </body>

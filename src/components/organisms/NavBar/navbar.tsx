@@ -4,6 +4,7 @@ import { SearchForm } from "@/components/molecules/form/search-form";
 import { NavLogo } from "@/components/molecules/nav/nav-logo";
 import { NavMenu } from "@/components/molecules/nav/nav-menu";
 import { Button } from "@/components/ui/button";
+import { Route } from "@/const";
 import { Bell, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 
@@ -24,7 +25,7 @@ const NavBar = () => {
             </>
           ) : (
             <>
-              <Link href="/auth/sign-in">
+              <Link href={Route.Login}>
                 <Button
                   variant="ghost"
                   className="hover:bg-purple-700 hover:text-white primary-btn"
@@ -33,7 +34,7 @@ const NavBar = () => {
                   Iniciar Sesión
                 </Button>
               </Link>
-              <Link href="/auth/sign-up">
+              <Link href={Route.Register}>
               <Button
                   variant="outline"
                   className="text-white  outline-btn"

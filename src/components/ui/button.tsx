@@ -14,7 +14,7 @@ const buttonVariants = cva(
         primary: 'bg-primary_500 hover:bg-primary_700 active:bg-primary_100 text-neutral-50',
         secondary:
           'text-[#BCA2FF] bg-transparent hover:bg-neutral-100 active:border-primary-500 active:text-primary-500',
-        greenButton: 'bg-green-500 hover:bg-green-700 active:bg-green-100 text-neutral-50',
+        greenButton: 'bg-green_500 hover:bg-green_900 active:bg-green_300 active:shadow-custom-3 text-neutral-50',
         destructive:
           'bg-red-500 text-neutral-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-neutral-50 dark:hover:bg-red-900/90',
         outline:

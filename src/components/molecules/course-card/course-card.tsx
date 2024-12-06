@@ -21,6 +21,7 @@ interface ICourse {
   image: string;
   category: string;
   rating: string;
+  free: boolean;
 }
 
 const CourseCard = ({
@@ -31,8 +32,9 @@ const CourseCard = ({
   image,
   category,
   rating,
+  free
 }: ICourse) => {
-  const handleAddChart = (id: string)=> {
+  const handleAddChart = (id: string) => {
     console.log("adding item with id", id);
   }
   return (
@@ -57,15 +59,23 @@ const CourseCard = ({
           <p className="text-heading_3 flex-grow overflow-ellipsis">
             {description}
           </p>
-          <span className="text-heading_3 py-3">${price}</span>
+
+          {!free && <span className="text-heading_3 py-3">${price}</span>}
         </CardDescription>
       </CardContent>
       <CardFooter className="flex p-0 justify-between items-center">
-        <Button variant="primary" onClick={()=> handleAddChart(id)}>Agregar al Carrito</Button>
-        <Button variant="outline_2">Detalles</Button>
+        {free ?
+          (<Button variant="greenButton"
+          className="w-full">Comienza ahora</Button>)
+          :
+          (<>
+            <Button variant="primary" onClick={() => handleAddChart(id)}>Agregar al Carrito</Button>
+            <Button variant="outline_2">Detalles</Button>
+          </>)}
+
       </CardFooter>
     </Card>
   );
 };
 
-export {CourseCard};
+export { CourseCard };
