@@ -76,7 +76,15 @@ export default {
         accent_600: '#1c2532',
         accent_700: '#161d27',
         accent_800: '#11171e',
-        accent_900: '#0d1117'
+        accent_900: '#0d1117',
+
+        //* hover color
+        hov_500: '#76A3F1',
+
+        //* Green color
+        green_300: '#63944F',
+        green_500: '#446636',
+        green_900: '#304627'
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -86,6 +94,7 @@ export default {
       boxShadow: {
         'custom-1': '6px 6px 6px 0px #00000040',
         'custom-2': '4px 4px 4px 0px #0000004F',
+        'custom-3': 'inset 6px 6px 4px 0px #0000004F'
       },
     }
   },

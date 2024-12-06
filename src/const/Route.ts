@@ -5,7 +5,8 @@ enum Route {
   forgetPassword = '/auth/forget-password',
   PrivacyPolicy = '/privacy-policy',
   TermsOfUse = '/terms-of-use',
-  Dashboard = '/platform'
+  Dashboard = '/platform',
+  Courses = '/courses/learn',
 }
 
 export { Route }

@@ -1,9 +1,7 @@
-import { Button, CourseCard, Dashboard } from "@/components";
-import { Route } from "@/const";
-import Link from "next/link";
+import { Button, CourseCard, LearnDashboard } from "@/components"
+import Link from "next/link"
 
-//to-do -> replace mockcourses with api results, make async component & skeleton load
-const courses = [
+const freeCourses = [
   {
     "id": "1",
     "title": "Introducción a JavaScript",
@@ -12,7 +10,7 @@ const courses = [
     "image": "https://via.placeholder.com/416x231",
     "category": "Desarrollo Web",
     "rating": "4.5",
-    "free": false
+    "free": true
   },
   {
     "id": "2",
@@ -22,7 +20,7 @@ const courses = [
     "image": "https://via.placeholder.com/416x231",
     "category": "Diseño",
     "rating": "4.8",
-    "free": false
+    "free": true
   },
   {
     "id": "3",
@@ -32,7 +30,7 @@ const courses = [
     "image": "https://via.placeholder.com/416x231",
     "category": "Programación",
     "rating": "4.6",
-    "free": false
+    "free": true
   },
   {
     "id": "4",
@@ -42,7 +40,7 @@ const courses = [
     "image": "https://via.placeholder.com/416x231",
     "category": "Inteligencia Artificial",
     "rating": "4.9",
-    "free": false
+    "free": true
   },
   {
     "id": "5",
@@ -52,7 +50,7 @@ const courses = [
     "image": "https://via.placeholder.com/416x231",
     "category": "Marketing",
     "rating": "4.4",
-    "free": false
+    "free": true
   },
   {
     "id": "6",
@@ -62,7 +60,7 @@ const courses = [
     "image": "https://via.placeholder.com/416x231",
     "category": "Desarrollo Web",
     "rating": "4.7",
-    "free": false
+    "free": true
   },
   {
     "id": "7",
@@ -72,7 +70,7 @@ const courses = [
     "image": "https://via.placeholder.com/416x231",
     "category": "Gestión de Proyectos",
     "rating": "4.3",
-    "free": false
+    "free": true
   },
   {
     "id": "8",
@@ -82,31 +80,29 @@ const courses = [
     "image": "https://via.placeholder.com/416x231",
     "category": "Tecnología",
     "rating": "4.6",
-    "free": false
+    "free": true
   }
 ];
 
 
-
-function Home() {
-  //to-do: Change values with auth
-  const user = true;
-  return (
-    <>
-      { user && <Dashboard />}
-      <section className="container self-center flex flex-col w-full gap-5">
-        <h2 className="text-display_2">Cursos en tendencia</h2>
-        <span className="flex w-full items-center justify-between">
-          <p>Estos son los cursos que están marcando tendencia en la comunidad:</p>
-          <Button 
+function Learn() {
+  return <>
+    <section className="container self-center w-full flex flex-col items-center justify-center">
+      <h1 className="text-display_2">Aprende con Nosotros</h1>
+      <LearnDashboard />
+    </section>
+    <section className="container self-center w-full flex flex-col items-center justify-center">
+      <span className="flex w-full items-center justify-between">
+        <h2 className="text-display_2">Cursos gratis recomendados:</h2>
+        <Button
           variant="outline_2"
           aria-label="courses">
-            <Link href={Route.Courses}>Ver más</Link>
-          </Button>
-        </span>
-        <div className="flex flex-nowrap w-full gap-8 overflow-x-auto py-4">
-          <>
-          {courses && courses.length>0 ? courses.map(({
+          <Link href="#">Ver más</Link>
+        </Button>
+      </span>
+      <div className="flex flex-nowrap w-full gap-8 overflow-x-auto py-4">
+        <>
+          {freeCourses && freeCourses.length > 0 ? freeCourses.map(({
             id,
             title,
             description,
@@ -115,8 +111,8 @@ function Home() {
             category,
             rating,
             free
-            }) => (
-              <CourseCard
+          }) => (
+            <CourseCard
               key={id}
               id={id}
               title={title}
@@ -126,13 +122,12 @@ function Home() {
               category={category}
               rating={rating}
               free={free} />
-              )) : 
-              <h2 className="text-heading_1">Aún No hay cursos disponibles</h2>}
-          </>         
-        </div>
-      </section>
-    </>
-  );
+          )) :
+            <h2 className="text-heading_1">Aún No hay cursos disponibles</h2>}
+        </>
+      </div>
+    </section>
+  </>
 }
 
-export default Home;
+export default Learn
