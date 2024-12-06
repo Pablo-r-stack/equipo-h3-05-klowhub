@@ -2,9 +2,9 @@ import { userService } from "../services/user.service.js";
 
 export const register = async (req, res) => {
   try {
-    const { name, lastName, email, password } = req.body;
+    const { name, lastName, email, password, avatar } = req.body;
 
-    if (!name || !lastName || !email || !password) {
+    if (!name || !lastName || !email || !password || !avatar) {
       res.status(400);
       throw {
         code: 400,
@@ -13,7 +13,13 @@ export const register = async (req, res) => {
     }
 
     // Llamar al servicio
-    const result = await userService({ name, lastName, email, password });
+    const result = await userService({
+      name,
+      lastName,
+      email,
+      password,
+      avatar,
+    });
     res.status(201).json({
       message: "Usuario creado",
       user: {
@@ -22,6 +28,7 @@ export const register = async (req, res) => {
         lastName: result.user.lastName,
         email: result.user.email,
         password: result.user.password,
+        avatar: result.user.avatar,
       },
       token: result.token,
     });

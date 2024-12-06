@@ -4,7 +4,7 @@ import { generateToken } from "../utils/jwt.js";
 import { hashPassword } from "../utils/passwordUtils.js";
 
 export const userService = async (userData) => {
-  const { name, lastName, email, password } = userData;
+  const { name, lastName, email, password, avatar } = userData;
 
   const existingUser = await checkIfUserExists(email);
 
@@ -20,6 +20,7 @@ export const userService = async (userData) => {
       lastName,
       email,
       password: hashedPassword,
+      avatar: avatar || "",
     },
   });
 
