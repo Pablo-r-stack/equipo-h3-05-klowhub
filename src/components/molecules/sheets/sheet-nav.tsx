@@ -21,7 +21,7 @@ function SheetNav() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant='outline' size='icon'>
+        <Button className='xl:hidden' variant='outline' size='icon'>
           <MenuIcon />
         </Button>
       </SheetTrigger>
