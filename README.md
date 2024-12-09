@@ -75,7 +75,7 @@ KlowHub es una plataforma SaaS diseñada para ser el punto de encuentro de todos
 
 ### 💻 Backend [🔝](#-readme-for-app-)
 
-| ![Avatar](https://avatars.githubusercontent.com/u/139293883?s=96&v=4) |![Avatar](https://avatars.githubusercontent.com/u/43653464?s=96&v=4) |
+| ![Avatar](https://avatars.githubusercontent.com/u/107081649?s=96&v=4) |![Avatar](https://avatars.githubusercontent.com/u/43653464?s=96&v=4) |
 |:-:|:-:|
 | **Juan Pablo Morales** | **Alejandro Escudero**  |
 | [![Github Link](https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white 'Github Link')](https://github.com/Juampi095)[![LinkedIn Link](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](https://www.linkedin.com/in/juan-pablo-morales-018/) | [![Github Link](https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white 'Github Link')](https://github.com/Alekosescu)[![LinkedIn Link](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white 'LinkedIn Link')](www.linkedin.com/in/alejandrogescudero) |
