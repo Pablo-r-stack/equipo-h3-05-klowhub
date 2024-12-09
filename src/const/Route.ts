@@ -7,7 +7,10 @@ enum Route {
   TermsOfUse = '/terms-of-use',
   Dashboard = '/platform',
   Courses = '/courses/learn',
-  Study = '/courses/study'
+  Study = '/courses/study',
+  Docs = '/docs',
+  Guides = '/guides',
+  Blog = '/blog'
 }
 
 export { Route }
