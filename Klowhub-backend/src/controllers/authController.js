@@ -20,9 +20,9 @@ const allowedAvatars = [
  * @param {Response} res - La respuesta HTTP.
  */
 export const register = async (req, res) => {
-  const { name, lastName, email, password, avatar } = req.body;
+  const { name, lastName, email, password, avatarUrl } = req.body;
 
-  if (!email || !password || !avatar) {
+  if (!email && !password && !avatarUrl) {
     return res
       .status(400)
       .json({ error: "Todos los campos son obligatorios." });
@@ -48,7 +48,7 @@ export const register = async (req, res) => {
     });
   }
 
-  if (!allowedAvatars.includes(avatar)) {
+  if (!allowedAvatars.includes(avatarUrl)) {
     return res.status(400).json({ error: "Selección de avatar no válida." });
   }
 
@@ -63,13 +63,13 @@ export const register = async (req, res) => {
         lastName,
         email,
         password: hashedPassword,
-        avatar,
+        avatarUrl,
       },
     });
 
     res.status(201).json({
       message: "Usuario registrado correctamente.",
-      user: { id: newUser.id, email: newUser.email, avatar: newUser.avatar },
+      user: { id: newUser.id, email: newUser.email, avatar: newUser.avatarUrl },
     });
   } catch (error) {
     console.error("Error al registrar al usuario:", error); // Ver el error completo

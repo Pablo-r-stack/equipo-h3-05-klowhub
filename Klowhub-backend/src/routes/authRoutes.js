@@ -9,20 +9,61 @@ const router = express.Router();
 /**
  * @swagger
  * /auth/register:
- *   post:
- *     summary: Registrar un nuevo usuario
- *     tags: [Autenticación]
+ *    post:
+ *     summary: Registro de un nuevo usuario
+ *     description: Crea un nuevo usuario con los datos proporcionados.
+ *     tags:
+ *       - Autenticación
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Usuario'
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Juan
+ *               lastName:
+ *                 type: string
+ *                 example: Pérez
+ *               email:
+ *                 type: string
+ *                 example: juan.perez@example.com
+ *               password:
+ *                 type: string
+ *                 example: Contraseña123!
+ *               avatarUrl:
+ *                 type: string
+ *                 example: avatar1.png
  *     responses:
  *       201:
- *         description: Usuario registrado exitosamente
+ *         description: Usuario creado exitosamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Usuario creado
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: number
+ *                     name:
+ *                       type: string
+ *                     lastName:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     password:
+ *                       type: string
+ *                 token:
+ *                   type: string
  *       400:
- *         description: Datos inválidos
+ *         description: Error en los datos proporcionados.
  */
 router.post("/register", async (req, res) => {
   try {
