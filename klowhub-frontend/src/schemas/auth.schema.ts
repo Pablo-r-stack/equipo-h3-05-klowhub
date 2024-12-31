@@ -15,12 +15,20 @@ const signUpSchema = z
       .string()
       .min(1, { message: 'Este campo es obligatorio.' })
       .max(MAX_TITLE_CHARACTERS, { message: 'El nombre es demasiado largo.' }),
+    lastName: z
+      .string()
+      .min(1, {message: 'Este campo es obligatorio.'})
+      .max(MAX_TITLE_CHARACTERS, {message: 'El apellido es demasiado largo.'}),
     email: z
       .string()
       .email({ message: 'El correo electrónico no es valido.' })
       .max(MAX_TITLE_CHARACTERS, { message: 'El correo electrónico es demasiado largo.' }),
     password: z.string().min(1, { message: 'Este campo es obligatorio.' }),
-    confirmPassword: z.string().min(1, { message: 'Este campo es obligatorio.' })
+    confirmPassword: z.string().min(1, { message: 'Este campo es obligatorio.' }),
+    avatarUrl: z
+      .string()
+      .min(5,{message: 'Este campo es obligatorio'})
+      .max(MAX_TITLE_CHARACTERS, {message: 'El url es demasiado largo.'})
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'Las contraseñas no coinciden.',

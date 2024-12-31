@@ -1,5 +1,5 @@
 'use client'
-
+import { useRouter  } from 'next/navigation';
 import {
   AuthProviders,
   Button,
@@ -14,24 +14,38 @@ import {
 } from '@/components/'
 import { Route } from '@/const'
 import { signUpSchema, SignUpSchema } from '@/schemas/auth.schema'
+import { registerUser } from '@/useCases/registerUseCase'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2Icon } from 'lucide-react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
 function SignUpForm() {
+  const router = useRouter()
   const form = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: '',
+      lastName:'',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      avatarUrl: 'avatar1.png' //need to change this attr later
     }
   })
+  /*
+  {
+  "name": "Juan",
+  "lastName": "Pérez",
+  "email": "juan.perez@example.com",
+  "password": "Contraseña123!",
+  "avatarUrl": "avatar1.png"
+}
+  */ 
 
-  function onSubmit(values: SignUpSchema) {
-    console.log(values)
+  async function onSubmit(values: SignUpSchema) {
+    await registerUser(values);
+    router.push(Route.Login)
   }
 
   return (
@@ -45,6 +59,18 @@ function SignUpForm() {
               <FormItem>
                 <FormControl>
                   <Input className='h-14' placeholder='Nombre Completo' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='lastName'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input className='h-14' placeholder='Apellido' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

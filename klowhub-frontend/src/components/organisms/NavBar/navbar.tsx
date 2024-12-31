@@ -1,14 +1,18 @@
 'use client'
 import { Button, NavIconButton, NavLogo, NavMenu, SearchForm, SheetNav } from '@/components'
 import { Route } from '@/const'
+import { useAuth } from '@/context/AuthContext'
 import { Bell, SearchIcon, ShoppingCart, User, XIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
+
 const NavBar = () => {
+  const{user} = useAuth();
+  
   const [openSearch, setOpenSearch] = useState(false)
-  const session = true
+
   return (
     <header className='backdrop-blur-md sticky top-0 z-50 w-full h-[121px] bg-none border-b flex justify-between items-center px-8 py-5'>
       <NavLogo className='hidden sm:flex' />
@@ -25,7 +29,7 @@ const NavBar = () => {
           {openSearch ? <XIcon /> : <SearchIcon />}
         </Button>
         <div className='hidden xl:flex items-center justify-center gap-4'>
-          {session ? (
+          {user ? (
             <>
               <NavIconButton icon={Bell} label='Notifications' />
               <NavIconButton icon={ShoppingCart} label='Cart' />

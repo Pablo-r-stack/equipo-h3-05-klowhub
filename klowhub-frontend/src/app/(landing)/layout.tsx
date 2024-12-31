@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import { NavBar } from "@/components";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
   title: "KlowHub",
@@ -14,12 +15,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <AuthProvider>
       <body className={`antialiased home_bg h-full min-h-screen`}>
         <NavBar />
         <main className="flex flex-col mx-8 pt-8 gap-8">
           {children}
         </main>
       </body>
+      </AuthProvider>
     </html>
   );
 }

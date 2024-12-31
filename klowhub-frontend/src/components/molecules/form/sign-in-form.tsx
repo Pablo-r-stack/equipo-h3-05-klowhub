@@ -14,12 +14,18 @@ import {
 } from '@/components/'
 import { Route } from '@/const'
 import { signInSchema, SignInSchema } from '@/schemas/auth.schema'
+import { useLogin } from '@/useCases/authUseCase'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2Icon } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
 function SignInForm() {
+  const router = useRouter();
+
+  const {login} = useLogin();
+
   /**
    * The `useForm` hook is used to create a form instance for the sign-in form.
    * It takes a Zod schema as an argument and returns a form instance with the specified schema.
@@ -37,8 +43,9 @@ function SignInForm() {
    * Submits the sign-in form, logging the `SignInSchema` values to the console.
    * @param values - The `SignInSchema` values to log.
    */
-  function onSubmit(values: SignInSchema) {
-    console.log(values)
+  async function onSubmit(values: SignInSchema) {
+    await login(values);
+    router.push(Route.Home);
   }
 
   return (
