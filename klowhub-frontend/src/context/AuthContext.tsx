@@ -12,7 +12,8 @@ interface AuthContextType{
 interface User{
     id: string,
     email: string,
-    name: string
+    name: string,
+    avatarUrl: string
 }
 const AuthContext = createContext<AuthContextType>({
     user: null,

@@ -1,5 +1,6 @@
 'use client'
 import { Button, NavIconButton, NavLogo, NavMenu, SearchForm, SheetNav } from '@/components'
+import { UserMenu } from '@/components/molecules/nav/user-menu'
 import { Route } from '@/const'
 import { useAuth } from '@/context/AuthContext'
 import { Bell, SearchIcon, ShoppingCart, User, XIcon } from 'lucide-react'
@@ -33,7 +34,7 @@ const NavBar = () => {
             <>
               <NavIconButton icon={Bell} label='Notifications' />
               <NavIconButton icon={ShoppingCart} label='Cart' />
-              <NavIconButton icon={User} label='Profile' />
+              <UserMenu />
             </>
           ) : (
             <>
