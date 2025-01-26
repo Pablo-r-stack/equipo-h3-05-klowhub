@@ -13,6 +13,7 @@ import courseRoutes from "./routes/course.routes.js";
 import claseRoutes from "./routes/claseRoutes.js";
 import setupSwagger from "./swagger.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import categoryRoutes from "./routes/category.routes.js"
 
 dotenv.config();
 
@@ -38,6 +39,9 @@ app.use("/api/courses", courseRoutes);
 
 // Rutas adicionales
 app.use("/api/upload", uploadRoutes);
+
+//Ruta Categorias
+app.use("/api/category", categoryRoutes);
 
 // Documentación Swagger
 setupSwagger(app);

@@ -14,7 +14,7 @@ model User {
   email       String   @unique
   password    String
   profile     Profile?
-  avatarUrl   String?  // URL del avatar en Cloudinary
+  avatarUrl   String? // URL del avatar en Cloudinary
   coursesSold Course[] @relation("CourseSeller")
   Shopping    Shop[]
   createdAt   DateTime @default(now())
@@ -36,7 +36,8 @@ model Course {
   title       String
   description String
   price       Float
-  category    String
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id])
   sellerId    Int
   seller      User     @relation("CourseSeller", fields: [sellerId], references: [id])
   modules     Module[]
@@ -46,13 +47,13 @@ model Course {
 }
 
 model Module {
-  id          Int      @id @default(autoincrement())
-  title       String
-  courseId    Int
-  course      Course   @relation(fields: [courseId], references: [id])
-  classes     Clase[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  title     String
+  courseId  Int
+  course    Course   @relation(fields: [courseId], references: [id])
+  classes   Clase[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Clase {
@@ -61,9 +62,9 @@ model Clase {
   module      Module   @relation(fields: [moduleId], references: [id])
   classNumber Int
   title       String
-  videoUrl    String?   // URL del video en Cloudinary
-  thumbnail   String?  // URL del thumbnail del video
-  material    String?  // URL del material adicional
+  videoUrl    String? // URL del video en Cloudinary
+  thumbnail   String? // URL del thumbnail del video
+  material    String? // URL del material adicional
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -75,4 +76,12 @@ model Shop {
   user        User     @relation(fields: [userId], references: [id])
   course      Course   @relation(fields: [courseId], references: [id])
   purchasedAt DateTime @default(now())
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Course    Course[]
 }
