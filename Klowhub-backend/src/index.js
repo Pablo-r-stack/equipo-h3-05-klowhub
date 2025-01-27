@@ -14,6 +14,7 @@ import claseRoutes from "./routes/claseRoutes.js";
 import setupSwagger from "./swagger.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import categoryRoutes from "./routes/category.routes.js"
+import moduleRoutes from "./routes/module.routes.js"
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use("/api/register", registerRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/clases", claseRoutes);
 app.use("/api/courses", courseRoutes);
+app.use("/api/modules", moduleRoutes);
 
 // Rutas adicionales
 app.use("/api/upload", uploadRoutes);

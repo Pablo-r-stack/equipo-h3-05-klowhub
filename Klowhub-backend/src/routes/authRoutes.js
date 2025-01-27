@@ -90,8 +90,10 @@ router.post("/register", async (req, res) => {
  *             properties:
  *               email:
  *                 type: string
+ *                 example: "juan.perez@example.com"
  *               password:
  *                 type: string
+ *                 example: "Contraseña123!"
  *             required:
  *               - email
  *               - password

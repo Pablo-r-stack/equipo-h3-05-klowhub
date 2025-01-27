@@ -12,12 +12,13 @@ export const courseService = {
   },
 
   getCourseById: async (id) => {
+    console.log("Buscando curso", id)
     return await prisma.course.findUnique({
       where: { id: parseInt(id) },
       include: {
         modules: {
           include: {
-            clases: true,
+            classes: true,
           },
         },
         seller: true,
