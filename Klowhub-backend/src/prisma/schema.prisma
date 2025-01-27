@@ -38,6 +38,7 @@ model Course {
   price       Float
   categoryId  Int
   category    Category @relation(fields: [categoryId], references: [id])
+  thumbnail   String
   sellerId    Int
   seller      User     @relation("CourseSeller", fields: [sellerId], references: [id])
   modules     Module[]

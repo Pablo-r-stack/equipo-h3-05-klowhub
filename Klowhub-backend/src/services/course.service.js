@@ -28,7 +28,14 @@ export const courseService = {
   getAllCourses: async () => {
     return await prisma.course.findMany({
       include: {
-        seller: true,
+        seller: {
+          select:{
+            id: true,
+            name: true,
+            lastName: true,
+            avatarUrl: true
+          }
+        },
         modules: true,
       },
     });

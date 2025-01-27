@@ -29,22 +29,74 @@ const router = Router();
  *               title:
  *                 type: string
  *                 description: Título del curso
+ *                 example: "Introducción a Prisma"
  *               description:
  *                 type: string
  *                 description: Descripción del curso
+ *                 example: "Este curso enseña los fundamentos de Prisma."
  *               price:
  *                 type: number
  *                 description: Precio del curso
+ *                 example: 100
+ *               categoryId:
+ *                 type: number
+ *                 description: ID de la categoría del curso
+ *                 example: 1
+ *               sellerId:
+ *                 type: number
+ *                 description: ID del creador del curso
+ *                 example: 1
+ *               thumbnail:
+ *                 type: string
+ *                 description: URL de la imagen miniatura del curso
+ *                 example: "https://example.com/imagen.png"
  *     responses:
  *       201:
  *         description: Curso creado exitosamente
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Course'
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   example: 1
+ *                 title:
+ *                   type: string
+ *                   example: "Introducción a Prisma"
+ *                 description:
+ *                   type: string
+ *                   example: "Este curso enseña los fundamentos de Prisma."
+ *                 price:
+ *                   type: number
+ *                   example: 99.99
+ *                 categoryId:
+ *                   type: number
+ *                   example: 1
+ *                 sellerId:
+ *                   type: number
+ *                   example: 42
+ *                 thumbnail:
+ *                   type: string
+ *                   example: "https://example.com/imagen.png"
+ *                 modules:
+ *                   type: array
+ *                   description: Lista de módulos asociados al curso
+ *                   items:
+ *                     type: object
+ *                   example: []
+ *                 createdAt:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2023-01-01T00:00:00Z"
+ *                 updatedAt:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2023-01-01T00:00:00Z"
  *       400:
  *         description: Error en la solicitud
  */
+router.post("/create", requireAuth, courseController.createCourse);
 
 /**
  * @swagger
@@ -60,11 +112,63 @@ const router = Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Course'
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     example: 1
+ *                   title:
+ *                     type: string
+ *                     example: "Introducción a Prisma"
+ *                   description:
+ *                     type: string
+ *                     example: "Este curso enseña los fundamentos de Prisma."
+ *                   price:
+ *                     type: number
+ *                     example: 100
+ *                   categoryId:
+ *                     type: integer
+ *                     example: 1
+ *                   thumbnail:
+ *                     type: string
+ *                     example: "https://example.com/imagen.png"
+ *                   sellerId:
+ *                     type: integer
+ *                     example: 4
+ *                   createdAt:
+ *                     type: string
+ *                     format: date-time
+ *                     example: "2025-01-27T00:23:46.664Z"
+ *                   updatedAt:
+ *                     type: string
+ *                     format: date-time
+ *                     example: "2025-01-27T00:23:46.664Z"
+ *                   seller:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                         example: 4
+ *                       name:
+ *                         type: string
+ *                         example: "Pepe"
+ *                       lastName:
+ *                         type: string
+ *                         example: "Pérez"
+ *                       avatarUrl:
+ *                         type: string
+ *                         example: "avatar1.png"
+ *                   modules:
+ *                     type: array
+ *                     items:
+ *                       type: object
+ *                     example: []
  *       400:
  *         description: Error en la solicitud
+ *       404:
+ *         description: No se encontraron cursos
  */
-
+router.get("/", courseController.getAllCourses);
 /**
  * @swagger
  * /courses/my-courses:
@@ -181,8 +285,7 @@ const router = Router();
  *         description: Error en la solicitud
  */
 
-router.post("/create", requireAuth, courseController.createCourse);
-router.get("/courses", courseController.getAllCourses);
+//to do -> refactor and check validity of the endpoints from below
 router.get("/my-courses", requireAuth, courseController.getMyCourses);
 router.get("course/:id", courseController.getCourse);
 router.put("update-course/:id", requireAuth, courseController.updateCourse);
