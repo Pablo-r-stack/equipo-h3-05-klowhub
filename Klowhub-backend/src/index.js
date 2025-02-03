@@ -12,7 +12,6 @@ import userRoutes from "./routes/userRoutes.js";
 import courseRoutes from "./routes/course.routes.js";
 import claseRoutes from "./routes/claseRoutes.js";
 import setupSwagger from "./swagger.js";
-import uploadRoutes from "./routes/uploadRoutes.js";
 import categoryRoutes from "./routes/category.routes.js"
 import moduleRoutes from "./routes/module.routes.js"
 
@@ -40,7 +39,7 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/modules", moduleRoutes);
 
 // Rutas adicionales
-app.use("/api/upload", uploadRoutes);
+// app.use("/api/upload", uploadRoutes);
 
 //Ruta Categorias
 app.use("/api/category", categoryRoutes);

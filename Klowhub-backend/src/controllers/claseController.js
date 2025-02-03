@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { createClaseInDB } from "../services/claseService.js";
+import { signUploadToken } from "../config/cloudinary.js";
 
 const prisma = new PrismaClient();
 
@@ -58,3 +58,17 @@ export const createClase = async (req, res) => {
       .json({ error: "Error al crear la clase", details: error.message });
   }
 };
+
+export const uploadToken = async(req, res)=>{
+  try {
+    const { signature, timestamp } = await signUploadToken();
+    res.json({
+      signature,
+      timestamp,
+      cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+      apiKey: process.env.CLOUDINARY_API_KEY,
+    });
+  } catch (error) {
+    res.status(error.status || 500).json(error.message || "Invalid request");
+  }
+}
