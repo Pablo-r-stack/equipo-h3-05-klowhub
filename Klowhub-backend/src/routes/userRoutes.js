@@ -13,7 +13,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /user/me:
+ * /users/me:
  *   get:
  *     summary: Obtener el perfil del usuario actual
  *     tags: [Usuario]
@@ -103,7 +103,7 @@ router.get("/users", getAllUsers);
 
 /**
  * @swagger
- * /user/{id}:
+ * /users/{id}:
  *   get:
  *     summary: Obtener un usuario por ID
  *     tags:
@@ -137,7 +137,7 @@ router.get("/users", getAllUsers);
  *       404:
  *         description: Usuario no encontrado.
  */
-router.get("/user/:id", getUserById);
+router.get("/:id", getUserById);
 
 /**
  * @swagger

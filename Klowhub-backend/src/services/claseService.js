@@ -1,21 +1,26 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../index.js";
+import createError from "../utils/errorHandler.js";
 
 export const createClaseInDB = async ({
   moduleId,
   classNumber,
   title,
-  video,
+  videoUrl,
+  thumbnail,
   material,
 }) => {
-  return await prisma.clase.create({
-    data: {
-      moduleId,
-      classNumber,
-      title,
-      video,
-      material,
-    },
-  });
+  try {
+    return await prisma.clase.create({
+      data: {
+        moduleId,
+        classNumber,
+        title,
+        videoUrl,
+        thumbnail,
+        material,
+      },
+    });
+  } catch (error) {
+    throw createError(500, error);
+  }
 };

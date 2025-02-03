@@ -11,8 +11,89 @@ const router = express.Router();
  *   description: Gestión de clases
  */
 
-// This route will create a leson based on a complete url form.
-router.post("/", createClase);
+/**
+ * @swagger
+ * /clases:
+ *   post:
+ *     summary: Crea una nueva clase asociada a un módulo
+ *     description: Este endpoint crea una nueva clase para un módulo existente, con los datos proporcionados.
+ *     tags: [Clases]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               moduleId:
+ *                 type: integer
+ *                 description: ID del módulo al que se asociará la clase.
+ *                 example: 1
+ *               classNumber:
+ *                 type: integer
+ *                 description: Número de la clase dentro del módulo.
+ *                 example: 1
+ *               title:
+ *                 type: string
+ *                 description: Título de la clase.
+ *                 example: "Introducción a JavaScript"
+ *               videoUrl:
+ *                 type: string
+ *                 description: URL del video de la clase.
+ *                 example: "https://video-url.com/video.mp4"
+ *               thumbnail:
+ *                 type: string
+ *                 description: URL de la miniatura de la clase.
+ *                 example: "https://image-url.com/thumbnail.jpg"
+ *               material:
+ *                 type: string
+ *                 description: URL o enlace de los materiales adicionales de la clase.
+ *                 example: "Aqui van las notas del autor"
+ *     responses:
+ *       201:
+ *         description: Clase creada correctamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Clase creada correctamente"
+ *                 clase:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: integer
+ *                       example: 1
+ *                     moduleId:
+ *                       type: integer
+ *                       example: 1
+ *                     classNumber:
+ *                       type: integer
+ *                       example: 1
+ *                     title:
+ *                       type: string
+ *                       example: "Introducción a JavaScript"
+ *                     videoUrl:
+ *                       type: string
+ *                       example: "https://video-url.com/video.mp4"
+ *                     thumbnail:
+ *                       type: string
+ *                       example: "https://image-url.com/thumbnail.jpg"
+ *                     material:
+ *                       type: string
+ *                       example: "https://example.com/materials.zip"
+ *       400:
+ *         description: Datos inválidos en la solicitud.
+ *       401:
+ *         description: No autorizado. El usuario debe autenticarse.
+ *       500:
+ *         description: Error interno del servidor.
+ */
+router.post("/", verifyToken, createClase);
 
 
 /**

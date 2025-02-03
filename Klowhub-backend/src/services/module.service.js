@@ -26,7 +26,13 @@ export const moduleService = {
     },
 
     //get the Module based on its Id
-    getById: async()=>{
-        return ""
-    }
+    getById: async (id) => {
+        console.log("Buscando módulo", id);
+        return await prisma.module.findUnique({
+          where: { id: parseInt(id) },
+          include:{
+            course: true
+          }
+        });
+      }
 }

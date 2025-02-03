@@ -61,7 +61,7 @@ export const courseService = {
 
   getCoursesBySeller: async (id) => {
     return await prisma.course.findMany({
-      where: { sellerId: parseInt(sellerId) },
+      where: { sellerId: parseInt(id) },
       include: {
         modules: true,
       },
