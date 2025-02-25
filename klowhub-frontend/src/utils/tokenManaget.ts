@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 //handle state of the token, in this case instead of using SessionStorage we will use a cookie from next
 
 export const saveToken = (token: string) => {

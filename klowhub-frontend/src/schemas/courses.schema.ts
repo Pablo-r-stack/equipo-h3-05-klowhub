@@ -6,7 +6,7 @@ const basicInformationCourseSchema = z.object({
     .string()
     .min(1, 'El titulo es obligatorio.')
     .max(MAX_TITLE_CHARACTERS, { message: 'El titulo es demasiado largo.' }),
-  Description: z
+  description: z
     .string()
     .min(1, 'La descripcion es obligatoria.')
     .max(MAX_TITLE_CHARACTERS, { message: 'La descripcion es demasiado largo.' }),

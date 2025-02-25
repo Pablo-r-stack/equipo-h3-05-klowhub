@@ -14,7 +14,6 @@ export const courseController = {
         ...req.body,
         sellerId: req.user.id,
       };
-
       const course = await courseService.createCourse(courseData);
       res.status(201).json(course);
     } catch (error) {

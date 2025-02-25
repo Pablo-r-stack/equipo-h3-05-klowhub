@@ -72,7 +72,7 @@ router.put("/me/avatar", verifyToken, async (req, res) => {
 
 /**
  * @swagger
- * /users:
+ * /users/users:
  *   get:
  *     summary: Obtener todos los usuarios
  *     tags:

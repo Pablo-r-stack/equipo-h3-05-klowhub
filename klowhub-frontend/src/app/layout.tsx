@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { PortalProvider } from "@/context/PortalContext";
 
 export const metadata: Metadata = {
   title: "KlowHub",
@@ -13,9 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased home_bg h-full min-h-screen`}>
-        {children}
-      </body>
+      <PortalProvider>
+        <body className={`antialiased home_bg h-full min-h-screen`}>
+          {children}
+        </body>
+      </PortalProvider>
     </html>
   );
 }
