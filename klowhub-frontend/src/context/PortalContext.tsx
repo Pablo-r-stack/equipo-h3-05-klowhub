@@ -1,5 +1,6 @@
 'use client'
 
+import { Course } from "@/models";
 import { createContext, useContext, useEffect, useState } from "react"
 
 interface Category {
@@ -9,10 +10,12 @@ interface Category {
 
 interface PortalContextType {
     categories: Category[];
+    courses: Course[];
 }
 
 const PortalContext = createContext<PortalContextType>({
     categories: [],
+    courses: []
 });
 
 interface PortalProviderProps {
@@ -21,6 +24,7 @@ interface PortalProviderProps {
 
 export const PortalProvider = ({ children }: PortalProviderProps) => {
     const [categories, setCategories] = useState<Category[]>([]);
+    const [courses, setCourses] = useState<Course[]>([]);
 
     useEffect(() => {
         const getCategories = async () => {
@@ -36,12 +40,26 @@ export const PortalProvider = ({ children }: PortalProviderProps) => {
                 console.error("Error en la solicitud:", error);
             }
         };
+        const getCourses = async () =>{
+            try{
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`)
+                if(response.ok){
+                    const data: Course[] = await response.json();
+                    setCourses(data);
+                }else{
+                    console.error("error al obtener la lsita de cursos");
+                }
+            }catch(error){
+                console.error("Error al obtener cursos", error)
+            }
+        }
 
         getCategories();
+        getCourses();
     }, []);
 
     return (
-        <PortalContext.Provider value={{ categories }}>
+        <PortalContext.Provider value={{ categories, courses }}>
             {children}
         </PortalContext.Provider>
     );
