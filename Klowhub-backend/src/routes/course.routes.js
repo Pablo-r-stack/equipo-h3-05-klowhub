@@ -287,7 +287,7 @@ router.get("/", courseController.getAllCourses);
 
 //to do -> refactor and check validity of the endpoints from below
 router.get("/my-courses", requireAuth, courseController.getMyCourses);
-router.get("course/:id", courseController.getCourse);
+router.get("/course/:id", courseController.getCourse);
 router.put("update-course/:id", requireAuth, courseController.updateCourse);
 router.delete("delete-course/:id", requireAuth, courseController.deleteCourse);
 

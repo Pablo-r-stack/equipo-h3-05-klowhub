@@ -15,14 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <AuthProvider>
       <body className={`antialiased home_bg h-full min-h-screen`}>
         <NavBar />
         <main className="flex flex-col mx-8 pt-8 gap-8">
           {children}
         </main>
       </body>
-      </AuthProvider>
     </html>
   );
 }

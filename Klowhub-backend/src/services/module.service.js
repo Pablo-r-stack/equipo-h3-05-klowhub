@@ -31,7 +31,8 @@ export const moduleService = {
         return await prisma.module.findUnique({
           where: { id: parseInt(id) },
           include:{
-            course: true
+            course: true,
+            classes: true
           }
         });
       }

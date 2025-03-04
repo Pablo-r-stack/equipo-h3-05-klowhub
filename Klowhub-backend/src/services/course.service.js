@@ -12,7 +12,7 @@ export const courseService = {
   },
 
   getCourseById: async (id) => {
-    console.log("Buscando curso", id)
+    console.log("Buscando curso", id);
     return await prisma.course.findUnique({
       where: { id: parseInt(id) },
       include: {
@@ -21,7 +21,15 @@ export const courseService = {
             classes: true,
           },
         },
-        seller: true,
+        seller: {
+          select: {
+            id: true,
+            name: true,
+            lastName: true,
+            email: true,
+            avatarUrl: true,
+          },
+        },
       },
     });
   },
@@ -30,12 +38,12 @@ export const courseService = {
     return await prisma.course.findMany({
       include: {
         seller: {
-          select:{
+          select: {
             id: true,
             name: true,
             lastName: true,
-            avatarUrl: true
-          }
+            avatarUrl: true,
+          },
         },
         modules: true,
       },
@@ -63,7 +71,11 @@ export const courseService = {
     return await prisma.course.findMany({
       where: { sellerId: parseInt(id) },
       include: {
-        modules: true,
+        modules: {
+          include:{
+            classes: true
+          }
+        },
       },
     });
   },

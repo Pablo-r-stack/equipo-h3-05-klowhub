@@ -10,7 +10,7 @@ export default {
   theme: {
   	extend: {
   		textShadow: {
-  			title: '`4px 4px 4px rgba(0, 0, 0, 0.2), \\\\\\\\r\\\\\\\\n          4px 4px 4px rgba(0, 0, 0, 0.3)`'
+  			title: '`4px 4px 4px rgba(0, 0, 0, 0.2), \\\\\\\\\\\\\\\\r\\\\\\\\\\\\\\\\n          4px 4px 4px rgba(0, 0, 0, 0.3)`'
   		},
   		fontSize: {
   			label_2: '0.8125rem',
